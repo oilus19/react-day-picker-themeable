@@ -6,25 +6,26 @@ export default function Weekdays({
   localeUtils,
   weekdayComponent,
   weekdayElement,
+  styling,
 }) {
   const days = [];
   for (let i = 0; i < 7; i++) {
     const elementProps = {
       key: i,
-      className: 'DayPicker-Weekday',
+      styling,
       weekday: i,
       localeUtils,
       locale,
     };
     const element = weekdayElement ?
-      React.cloneElement(weekdayElement, elementProps) :
+      React.cloneElement(weekdayElement, { ...elementProps, ...styling('weekday', i, locale) }) :
       React.createElement(weekdayComponent, elementProps);
     days.push(element);
   }
 
   return (
-    <div className="DayPicker-Weekdays" role="rowgroup">
-      <div className="DayPicker-WeekdaysRow" role="columnheader">
+    <div {...styling('weekdays', locale)} role="rowgroup">
+      <div {...styling('weekdaysRow', locale)} role="columnheader">
         {days}
       </div>
     </div>
@@ -36,4 +37,5 @@ Weekdays.propTypes = {
   localeUtils: DayPickerPropTypes.localeUtils.isRequired,
   weekdayComponent: PropTypes.func,
   weekdayElement: PropTypes.element,
+  styling: PropTypes.func.isRequired,
 };

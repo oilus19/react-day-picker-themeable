@@ -1,24 +1,28 @@
 import React, { PropTypes } from 'react';
 import DayPickerPropTypes from './PropTypes';
 
-const buttonBaseClass = 'DayPicker-NavButton DayPicker-NavButton';
+import createStylingFromTheme from './createStylingFromTheme';
 
 export default function Navbar({
-  className,
+  styling,
   showPreviousButton,
   showNextButton,
   onPreviousClick,
   onNextClick,
   dir,
+  theme,
+  invertTheme,
 }) {
   const previousClickHandler = dir === 'rtl' ? onNextClick : onPreviousClick;
   const nextClickHandler = dir === 'rtl' ? onPreviousClick : onNextClick;
+
+  const navBarStyling = styling || createStylingFromTheme(theme, invertTheme);
 
   const previousButton = showPreviousButton &&
     <span
       role="button"
       key="previous"
-      className={`${buttonBaseClass}--prev`}
+      {...navBarStyling('navButton', 'prev')}
       onClick={() => previousClickHandler()}
     />;
 
@@ -26,19 +30,21 @@ export default function Navbar({
     <span
       role="button"
       key="right"
-      className={`${buttonBaseClass}--next`}
+      {...navBarStyling('navButton', 'next')}
       onClick={() => nextClickHandler()}
     />;
 
   return (
-    <div className={className}>
+    <div {...navBarStyling('navBar', dir)}>
       {dir === 'rtl' ? [nextButton, previousButton] : [previousButton, nextButton]}
     </div>
   );
 }
 
 export const NavbarPropTypes = {
-  className: PropTypes.string,
+  styling: PropTypes.func,
+  theme: PropTypes.any,
+  invertTheme: PropTypes.bool,
   nextMonth: PropTypes.instanceOf(Date),
   previousMonth: PropTypes.instanceOf(Date),
   showPreviousButton: PropTypes.bool,
@@ -53,7 +59,6 @@ export const NavbarPropTypes = {
 Navbar.propTypes = NavbarPropTypes;
 
 Navbar.defaultProps = {
-  className: 'DayPicker-NavBar',
   dir: 'ltr',
   showPreviousButton: true,
   showNextButton: true,

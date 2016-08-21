@@ -12,6 +12,10 @@ import * as LocaleUtils from './LocaleUtils';
 
 import keys from './keys';
 import DayPickerPropTypes from './PropTypes';
+
+import createStylingFromTheme from './createStylingFromTheme';
+
+
 export default class DayPicker extends Component {
   static VERSION = '2.4.1';
 
@@ -348,7 +352,7 @@ export default class DayPicker extends Component {
       this.showPreviousMonth();
     }
   }
-  renderNavbar() {
+  renderNavbar(styling) {
     const {
       locale,
       localeUtils,
@@ -359,7 +363,7 @@ export default class DayPicker extends Component {
 
     if (!canChangeMonth) return null;
     const props = {
-      className: 'DayPicker-NavBar',
+      styling,
       nextMonth: this.getNextNavigableMonth(),
       previousMonth: this.getPreviousNavigableMonth(),
       showPreviousButton: this.allowPreviousMonth(),
@@ -371,11 +375,11 @@ export default class DayPicker extends Component {
       localeUtils,
     };
     if (navbarElement) {
-      return React.cloneElement(navbarElement, props);
+      return React.cloneElement(navbarElement, { ...props, ...styling('navBar', attributes.dir) });
     }
     return React.createElement(navbarComponent, props);
   }
-  renderDayInMonth(day, month) {
+  renderDayInMonth(day, month, styling) {
     let dayModifiers = [];
     if (DateUtils.isSameDay(day, new Date())) {
       dayModifiers.push('today');
@@ -400,6 +404,7 @@ export default class DayPicker extends Component {
     const key = `${day.getFullYear()}${day.getMonth()}${day.getDate()}`;
     return (
       <Day
+        styling={styling}
         key={`${isOutside ? 'outside-' : ''}${key}`}
         day={day}
         modifiers={dayModifiers}
@@ -424,7 +429,7 @@ export default class DayPicker extends Component {
     );
   }
 
-  renderMonths() {
+  renderMonths(styling) {
     const months = [];
     const firstDayOfWeek = this.props.localeUtils.getFirstDayOfWeek(this.props.locale);
 
@@ -440,9 +445,7 @@ export default class DayPicker extends Component {
           firstDayOfWeek={firstDayOfWeek}
           fixedWeeks={this.props.fixedWeeks}
 
-          className="DayPicker-Month"
-          wrapperClassName="DayPicker-Body"
-          weekClassName="DayPicker-Week"
+          styling={styling}
 
           weekdayComponent={this.props.weekdayComponent}
           weekdayElement={this.props.weekdayElement}
@@ -462,26 +465,19 @@ export default class DayPicker extends Component {
 
   render() {
     const customProps = Helpers.getCustomProps(this.props, DayPicker.propTypes);
-    let className = `DayPicker DayPicker--${this.props.locale}`;
-
-    if (!this.props.onDayClick) {
-      className = `${className} DayPicker--interactionDisabled`;
-    }
-    if (this.props.className) {
-      className = `${className} ${this.props.className}`;
-    }
+    const styling = createStylingFromTheme(this.props.theme, this.props.invertTheme);
 
     return (
       <div
         {...customProps}
-        className={className}
+        {...styling('dayPicker', this.props.locale, !this.props.onDayClick, this.props.className)}
         ref="dayPicker"
         role="application"
         tabIndex={this.props.canChangeMonth && this.props.tabIndex}
         onKeyDown={this.handleKeyDown}
       >
-        {this.renderNavbar()}
-        {this.renderMonths()}
+        {this.renderNavbar(styling)}
+        {this.renderMonths(styling)}
       </div>
     );
   }

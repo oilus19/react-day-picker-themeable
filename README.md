@@ -5,6 +5,8 @@
 <img width="297" style="margin: 0 auto"  alt="screen shot" src="https://cloud.githubusercontent.com/assets/120693/12312069/74c136d6-ba5c-11e5-8eae-680ecd200f95.png">
 </p>
 
+Themeable version of [react-day-picker](https://github.com/gpbl/react-day-picker)
+
 react-day-picker is a flexible date picker component for [React](https://facebook.github.io/react/).
 
 * no external dependencies

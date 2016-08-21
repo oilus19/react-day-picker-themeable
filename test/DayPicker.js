@@ -41,7 +41,7 @@ describe('<DayPicker />', () => {
       expect(instance.state.currentMonth.getDate()).to.equal(1);
     });
     it('should render multiple months', () => {
-      const wrapper = shallow(<DayPicker numberOfMonths={12} />);
+      const wrapper = mount(<DayPicker numberOfMonths={12} />);
       expect(wrapper.find('.DayPicker-Month')).to.have.length(12);
     });
     it('should render multiple months, reversed', () => {

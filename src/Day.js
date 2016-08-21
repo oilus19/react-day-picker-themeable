@@ -27,15 +27,14 @@ export default function Day({
   ariaDisabled,
   ariaSelected,
   children,
+  styling,
 }) {
-  let className = 'DayPicker-Day';
-  className += modifiers.map(modifier => ` ${className}--${modifier}`).join('');
   if (empty) {
-    return <div role="gridcell" aria-disabled className={className} />;
+    return <div role="gridcell" aria-disabled {...styling('day', day, modifiers)} />;
   }
   return (
     <div
-      className={className}
+      {...styling('day', day, modifiers)}
       tabIndex={tabIndex}
       role="gridcell"
       aria-label={ariaLabel}
@@ -57,6 +56,7 @@ export default function Day({
 Day.propTypes = {
   day: PropTypes.instanceOf(Date).isRequired,
   children: PropTypes.node.isRequired,
+  styling: PropTypes.func.isRequired,
 
   ariaDisabled: PropTypes.bool,
   ariaLabel: PropTypes.string,

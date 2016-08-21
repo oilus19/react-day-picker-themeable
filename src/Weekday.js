@@ -1,9 +1,9 @@
 import React, { PropTypes } from 'react';
 import DayPickerPropTypes from './PropTypes';
 
-export default function Weekday({ weekday, className, localeUtils, locale }) {
+export default function Weekday({ weekday, styling, localeUtils, locale }) {
   return (
-    <div className={className}>
+    <div {...styling('weekday', weekday, locale)}>
       <abbr title={localeUtils.formatWeekdayLong(weekday, locale)}>
         {localeUtils.formatWeekdayShort(weekday, locale)}
       </abbr>
@@ -13,7 +13,7 @@ export default function Weekday({ weekday, className, localeUtils, locale }) {
 
 export const WeekdayPropTypes = {
   weekday: PropTypes.number,
-  className: PropTypes.string,
+  styling: PropTypes.func,
   locale: PropTypes.string,
   localeUtils: DayPickerPropTypes.localeUtils,
 };
