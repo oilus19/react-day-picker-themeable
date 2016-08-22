@@ -28,13 +28,14 @@ export default function Day({
   ariaSelected,
   children,
   styling,
+  isHovered,
 }) {
   if (empty) {
-    return <div role="gridcell" aria-disabled {...styling('day', day, modifiers)} />;
+    return <div role="gridcell" aria-disabled {...styling('dayPickerDay', day, modifiers, isHovered)} />;
   }
   return (
     <div
-      {...styling('day', day, modifiers)}
+      {...styling('dayPickerDay', day, modifiers, isHovered)}
       tabIndex={tabIndex}
       role="gridcell"
       aria-label={ariaLabel}
@@ -71,6 +72,7 @@ Day.propTypes = {
   onTouchStart: PropTypes.func,
   onFocus: PropTypes.func,
   tabIndex: PropTypes.number,
+  isHovered: PropTypes.bool,
 };
 
 Day.defaultProps = {

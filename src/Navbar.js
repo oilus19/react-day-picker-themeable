@@ -22,7 +22,7 @@ export default function Navbar({
     <span
       role="button"
       key="previous"
-      {...navBarStyling('navButton', 'prev')}
+      {...navBarStyling('dayPickerNavButton', 'prev')}
       onClick={() => previousClickHandler()}
     />;
 
@@ -30,12 +30,12 @@ export default function Navbar({
     <span
       role="button"
       key="right"
-      {...navBarStyling('navButton', 'next')}
+      {...navBarStyling('dayPickerNavButton', 'next')}
       onClick={() => nextClickHandler()}
     />;
 
   return (
-    <div {...navBarStyling('navBar', dir)}>
+    <div {...navBarStyling('dayPickerNavBar', dir)}>
       {dir === 'rtl' ? [nextButton, previousButton] : [previousButton, nextButton]}
     </div>
   );

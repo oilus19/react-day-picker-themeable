@@ -342,6 +342,22 @@ export default class DayPicker extends Component {
     this.props.onDayClick(e, day, modifiers);
   }
 
+  handleDayMouseEnter = (e, day, dayState) => {
+    this.setState({ hoveredDay: day });
+
+    if (this.props.onDayMouseEnter) {
+      this.props.onDayMouseEnter(e, day, dayState);
+    }
+  }
+
+  handleDayMouseLeave = (e, day, dayState) => {
+    this.setState({ hoveredDay: null });
+
+    if (this.props.onDayMouseLeave) {
+      this.props.onDayMouseLeave(e, day, dayState);
+    }
+  }
+
   handleOutsideDayClick(day) {
     const { currentMonth } = this.state;
     const { numberOfMonths } = this.props;
@@ -375,7 +391,7 @@ export default class DayPicker extends Component {
       localeUtils,
     };
     if (navbarElement) {
-      return React.cloneElement(navbarElement, { ...props, ...styling('navBar', attributes.dir) });
+      return React.cloneElement(navbarElement, { ...props, ...styling('dayPickerNavBar', attributes.dir) });
     }
     return React.createElement(navbarComponent, props);
   }
@@ -416,13 +432,14 @@ export default class DayPicker extends Component {
         ariaDisabled={isOutside || dayModifiers.indexOf('disabled') > -1}
         ariaSelected={dayModifiers.indexOf('selected') > -1}
 
-        onMouseEnter={this.props.onDayMouseEnter}
-        onMouseLeave={this.props.onDayMouseLeave}
+        onMouseEnter={this.handleDayMouseEnter}
+        onMouseLeave={this.handleDayMouseLeave}
         onKeyDown={this.handleDayKeyDown}
         onTouchStart={this.props.onDayTouchStart}
         onTouchEnd={this.props.onDayTouchEnd}
         onFocus={this.props.onDayFocus}
         onClick={this.props.onDayClick ? this.handleDayClick : undefined}
+        isHovered={DateUtils.isSameDay(day, this.state.hoveredDay)}
       >
         {this.props.renderDay(day)}
       </Day>

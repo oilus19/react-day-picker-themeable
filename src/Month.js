@@ -22,11 +22,11 @@ export default function Month({
     localeUtils,
     locale,
     onClick: onCaptionClick ? e => onCaptionClick(e, month) : undefined,
-    ...styling('caption', month, locale),
+    ...styling('dayPickerCaption', month, locale),
   };
   const weeks = getWeekArray(month, firstDayOfWeek, fixedWeeks);
   return (
-    <div {...styling('month', locale)}>
+    <div {...styling('dayPickerMonth', locale)}>
       {React.cloneElement(captionElement, captionProps)}
       <Weekdays
         styling={styling}
@@ -35,10 +35,10 @@ export default function Month({
         weekdayComponent={weekdayComponent}
         weekdayElement={weekdayElement}
       />
-      <div {...styling('wrapper')} role="grid">
+      <div {...styling('dayPickerMonthWrapper')} role="grid">
         {
           weeks.map((week, j) =>
-            <div key={j} {...styling('week', j, locale)} role="gridcell">
+            <div key={j} {...styling('dayPickerWeek', j, locale)} role="gridcell">
               {week.map(day => children(day, month, styling))}
             </div>
         )}

@@ -18,14 +18,17 @@ export default function Weekdays({
       locale,
     };
     const element = weekdayElement ?
-      React.cloneElement(weekdayElement, { ...elementProps, ...styling('weekday', i, locale) }) :
+      React.cloneElement(weekdayElement, {
+        ...elementProps,
+        ...styling('dayPickerWeekday', i, locale),
+      }) :
       React.createElement(weekdayComponent, elementProps);
     days.push(element);
   }
 
   return (
-    <div {...styling('weekdays', locale)} role="rowgroup">
-      <div {...styling('weekdaysRow', locale)} role="columnheader">
+    <div {...styling('dayPickerWeekdays', locale)} role="rowgroup">
+      <div {...styling('dayPickerWeekdaysRow', locale)} role="columnheader">
         {days}
       </div>
     </div>

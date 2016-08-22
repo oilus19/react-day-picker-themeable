@@ -3,7 +3,7 @@ import DayPickerPropTypes from './PropTypes';
 
 export default function Caption({ date, locale, localeUtils, onClick, styling }) {
   return (
-    <div {...styling('caption', date, locale)} onClick={onClick} role="heading">
+    <div {...styling('dayPickerCaption', date, locale)} onClick={onClick} role="heading">
       {localeUtils.formatMonthTitle(date, locale)}
     </div>
   );

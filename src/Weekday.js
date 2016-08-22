@@ -3,7 +3,7 @@ import DayPickerPropTypes from './PropTypes';
 
 export default function Weekday({ weekday, styling, localeUtils, locale }) {
   return (
-    <div {...styling('weekday', weekday, locale)}>
+    <div {...styling('dayPickerWeekday', weekday, locale)}>
       <abbr title={localeUtils.formatWeekdayLong(weekday, locale)}>
         {localeUtils.formatWeekdayShort(weekday, locale)}
       </abbr>

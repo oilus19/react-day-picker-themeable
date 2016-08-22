@@ -15,15 +15,15 @@ function getStylingFromBase16() {
       ),
     }),
 
-    navBar: 'DayPicker-NavBar',
+    dayPickerNavBar: 'DayPicker-NavBar',
 
-    month: 'DayPicker-Month',
+    dayPickerMonth: 'DayPicker-Month',
 
-    wrapper: 'DayPicker-Body',
+    dayPickerMonthWrapper: 'DayPicker-Body',
 
-    week: 'DayPicker-Week',
+    dayPickerWeek: 'DayPicker-Week',
 
-    navButton: ({ style, className }, type) => ({
+    dayPickerNavButton: ({ style, className }, type) => ({
       style,
       className: cn(
         'DayPicker-NavButton',
@@ -32,15 +32,15 @@ function getStylingFromBase16() {
       ),
     }),
 
-    weekday: 'DayPicker-Weekday',
+    dayPickerWeekday: 'DayPicker-Weekday',
 
-    weekdays: 'DayPicker-Weekdays',
+    dayPickerWeekdays: 'DayPicker-Weekdays',
 
-    weekdaysRow: 'DayPicker-WeekdaysRow',
+    dayPickerWeekdaysRow: 'DayPicker-WeekdaysRow',
 
-    caption: 'DayPicker-Caption',
+    dayPickerCaption: 'DayPicker-Caption',
 
-    day: ({ style, className }, day, modifiers) => ({
+    dayPickerDay: ({ style, className }, day, modifiers) => ({
       style,
       className: cn(
         'DayPicker-Day',
