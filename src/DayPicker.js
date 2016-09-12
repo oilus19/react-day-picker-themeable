@@ -60,7 +60,7 @@ export default class DayPicker extends Component {
     dir: PropTypes.string,
     className: PropTypes.string,
     tabIndex: PropTypes.number,
-
+    theme: PropTypes.any,
   };
 
   static defaultProps = {
