@@ -1,11 +1,12 @@
+<table><tr><td>
+This is a fork of <a href="https://github.com/gpbl/react-day-picker">react-day-picker</a> with theme support provided by <a href="https://github.com/alexkuz/react-base16-styling">react-base16-styling</a>. Below is the description from original fork.</td></tr></table>
+
 <p align="center">
 <img width="359"  style="margin: 0 auto" alt="title" src="https://cloud.githubusercontent.com/assets/120693/17276843/94ad5b62-5734-11e6-9f25-454f50f81122.png">
 </p>
 <p align="center">
 <img width="297" style="margin: 0 auto"  alt="screen shot" src="https://cloud.githubusercontent.com/assets/120693/12312069/74c136d6-ba5c-11e5-8eae-680ecd200f95.png">
 </p>
-
-Themeable version of [react-day-picker](https://github.com/gpbl/react-day-picker)
 
 react-day-picker is a flexible date picker component for [React](https://facebook.github.io/react/).
 
